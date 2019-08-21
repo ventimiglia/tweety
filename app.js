@@ -2,6 +2,10 @@ const express = require('express');
 const app = express(); // crea una instancia de una aplicación de express
 var morgan = require('morgan');
 var nunjucks = require('nunjucks');
+const routes = require('./routes');
+app.use('/', routes);
+app.use(express.static('public'))
+
 
 app.use(morgan('combined'));
 
@@ -13,24 +17,24 @@ app.listen(3000, function () {
     console.log('Aplicación ejemplo, escuchando el puerto 3000!');
 });
 
-app.get('/is-anybody-in-there',function(req, res, next){
+app.get('/is-anybody-in-there', function (req, res, next) {
     res.send('Yes, I am here');
     next();
 })
 
-app.post('/modernism', function(req, res, next){
+app.post('/modernism', function (req, res, next) {
     addNewUser(req.body);
     res.status(201).send('Okey');
 })
 
-app.get('/special*', function(req, res, next){
+app.get('/special*', function (req, res, next) {
     res.send('Llegaste a un area especial');
     next();
 })
 
-app.get('/views/index.html',function(req, res, next){
-    const people = [{name: 'Full'}, {name: 'Stacker'}, {name: 'Son'}, {name: 'Juanito'}];
-    res.render( 'index', {title: 'Hall of Fame', people: people} );
+app.get('/views/index.html', function (req, res, next) {
+    const people = [{ name: 'Full' }, { name: 'Stacker' }, { name: 'Son' }, { name: 'Juanito' }];
+    res.render('index', { title: 'Hall of Fame', people: people });
 })
 
 app.set('view engine', 'html'); // hace que res.render funcione con archivos html

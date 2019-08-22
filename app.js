@@ -3,9 +3,23 @@ const app = express(); // crea una instancia de una aplicación de express
 var morgan = require('morgan');
 var nunjucks = require('nunjucks');
 const routes = require('./routes');
-app.use('/', routes);
+var bodyParser = require('body-parser')
+var socketio = require('socket.io');
+var server = app.listen(3000, function () {
+    console.log('Aplicación ejemplo, escuchando el puerto 3000!');
+});
+
+var io = socketio.listen(server);
+
+app.use(bodyParser.urlencoded({ extended: false }))
+
+app.use( '/', routes(io) );
+
 app.use(express.static('public'))
 
+app.use(bodyParser.urlencoded({ extended: false }))
+
+app.use(bodyParser.json())
 
 app.use(morgan('combined'));
 
@@ -13,9 +27,6 @@ app.get('/', function (req, res) {
     res.send('Hola Mundo!');
 });
 
-app.listen(3000, function () {
-    console.log('Aplicación ejemplo, escuchando el puerto 3000!');
-});
 
 app.get('/is-anybody-in-there', function (req, res, next) {
     res.send('Yes, I am here');

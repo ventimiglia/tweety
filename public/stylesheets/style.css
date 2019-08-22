@@ -1,4 +1,5 @@
-html,body {
+html,
+body {
   height: 100%;
   /* The html and body elements cannot have any padding or margin. */
 }
@@ -18,7 +19,6 @@ html,body {
   height: 60px;
   background-color: #f5f5f5;
 }
-
 
 /* Custom page CSS
 -------------------------------------------------- */
@@ -48,7 +48,7 @@ code {
   float: left;
   height: 48px;
   width: 48px;
-  content:url("http://lorempixel.com/48/48");
+  content: url("http://lorempixel.com/48/48");
 }
 .content {
   margin-left: 60px;
@@ -59,20 +59,33 @@ code {
 
 /*****************************************************************/
 .col-md-9 {
-    list-style:none;
-    color: lightskyblue;
-    display: inline-block;
+  list-style: none;
+  color: lightskyblue;
 }
 
-#nombre{
-    font-weight: bold;
-    margin: 15px 0 15px 0;
+#nombre {
+  font-weight: bold;
+  margin: 19px 0 10px 0;
+  display: block;
 }
 
-#contenido{
-    
+#contenido {
+  margin-top: 5px;
 }
 
-#imagen{
-    
+#profile-pic {
+  width: 48px;
+  height: 48px;
+  float: right;
+  margin: 5px;
+}
+.col-md-2 {
+  height: 60px;
+}
+.col-md-10 {
+  height: 60px;
+  top: -15px;
+}
+.fila-for {
+  margin: 5px;
 }
